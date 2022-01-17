@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>unbound-core</artifactId>
+        <groupId>com.tyrengard.unbound</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>unbound-combat-mobs</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Unbound Combat Mobs</name>
+    <description>Combat-oriented custom mobs plugin for Spigot servers</description>
+    <url>mobs.unbound.tyrengard.com</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.tyrengard.unbound</groupId>
+            <artifactId>unbound-combat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tyrengard</groupId>
+            <artifactId>magicksapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tyrengard.unbound</groupId>
+            <artifactId>unbound-combat</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+</project>

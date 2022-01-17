@@ -1,0 +1,32 @@
+name: UnboundCombatMobs
+version: 1.0-SNAPSHOT
+main: com.tyrengard.unbound.combat.mobs.UnboundCombatMobs
+api-version: 1.16
+prefix: UnboundMobs
+depend: [ Aureycore, MagicksAPI, UnboundCombat ]
+authors: [ hayachikin, AureanAutumn ]
+description: Custom mob handler for the Unbound plugin pack for Havengarde
+website: unbound.tyrengard.com
+usage: &usage "\u00A7cWrong syntax. Use /<command> help to show proper usage."
+permission-message: &noperms "\u00A7cYou do not have permission to use this command."
+
+commands:
+  unbound-combat-mobs-admin:
+    description: Admin-only commands for the Unbound Combat Mobs plugin
+    usage: *usage
+    aliases: [ucmadmin]
+    permission: unbound.combat.mobs.admin
+    permission-message: *noperms
+  unbound-combat-mobs:
+    description: General commands for the Unbound Combat Mobs plugin
+    usage: *usage
+    aliases: [ucm]
+permissions:
+  unbound.combat.mobs.all:
+    description: All Unbound Combat Mobs permissions
+    default: false
+    children:
+      unbound.combat.mobs.admin: true
+  unbound.combat.mobs.admin:
+    description: Allows you to access admin-only commands for Unbound Combat Mobs
+    default: op

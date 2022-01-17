@@ -1,0 +1,100 @@
+# place this file in any directory, or directly, inside the "mobs" folder.
+
+name: Sample Mob(must match model name in resources)
+
+# base mob in all caps, with _ for spaces (e.g. CHICKEN, ZOMBIE_VILLAGER, ENDER_DRAGON)
+# mob follows base mob's behavior unless specified otherwise, ie:
+# use flying mob as base if you want it to fly
+# use tameable mob as base if you want it to be tamed
+# use mob that can use weapons and wear armor as base if you want mob to do those things
+base:
+
+# mob type tells the plugin what kind of mob it is
+# other types are: neutral, aggressive, boss
+type: passive
+short-description: Short one-line description that describes the mob
+full-description:
+  - Full description of the mob
+  - Multiple lines should be used
+
+# defines custom behavior for this mob
+# if omitted, mob will behave like base mob when spawned, but WILL NOT SPAWN NATURALLY
+behavior:
+  # defines spawning-related behavior
+  # if omitted, mob will not spawn naturally
+  spawning:
+    # specify which worlds the mob is allowed to spawn "naturally"
+    # if omitted, mob will use spawning.worlds in config.yml
+    # NOTE: if a world name does not exist, this will fail silently
+    worlds: [ world ]
+
+    # defines the order in which the mob is spawned in relation to other custom mobs of the same base
+    # this is only used in spawning strategies using the "vanilla" mob spawning trigger (e.g. the "replace" strategy)
+    priority: 0
+
+    # if you don't want the mob to despawn naturally, uncomment this line
+    #despawn: false
+
+    # "default" biome applies to all unspecified biomes
+    # if omitted, mob will only spawn in declared biomes
+    default:
+      # defines what spawning strategy to use, which determines when a "spawn event" happens
+      # replace (default) - spawns in place of base mob when conditions are met (if base mob doesn't spawn in biome, custom mob will not spawn)
+      # forced - spawns in whenever the conditions are met (frequency of "spawn checks" are set by spawning.forced-spawns-frequency tag in config.yml)
+      # <custom_strategy_name> - use this when you want to set a custom spawning strategy declared in config.yml under spawning.custom-strategies
+      #                        - if no custom strategy with given name is declared, config will be invalid and mob will not be loaded
+      strategy: replace
+
+      # defines conditions in which custom mob will spawn
+      # if omitted, custom mob will always spawn on "spawn event"
+      conditions:
+        spawn-rate: 0.05
+        max-mob-count: 1
+
+    # add any specific biome to spawn the mob in, with - for spaces (e.g. mountains, river, sunflower-plains)
+    # if a biome is added where the mob doesn't spawn naturally, do not use the "replace" strategy (mob will not spawn)
+    forest:
+      conditions: &forest # you can use anchors and aliases to keep the template DRY
+        spawn-rate: 0.1
+        mob-count:
+    plains:
+      conditions: *forest
+
+  combat: # combat-related behavior
+    evasive: # true or false (default); mob will try to evade enemy if in combat
+    territorial: false # true or false (default); mob will try to stay in its territory (will drop aggro if enemy leaves territory)
+
+# remove or comment-out combat stat below if mob doesn't have it (blank fields will be invalid, mob will not be loaded)
+stats:
+  melee_damage: # if mob has ranged damage, it will prefer ranged combat but perform melee combat if within range
+  weapon_weight: # use only if mob can use weapons
+  swing_speed: # use only if mob has melee_damage
+  movement_speed:
+  evasion: # default is 2.5%
+  cast_speed: # use only if mob has skills
+  accuracy: # default is 0%
+  weapon_complexity: # use only if mob can use weapons
+  health:
+  armor_weight: # use only if mob can wear armor
+  physical_resistance:
+  critical_chance: # default is 5%
+  ranged_damage:
+  spell_power: # use only if mob can use spells
+  spell_complexity: # use only if mob can use spells
+  mana: # use only if mob has skills
+  mana_regen: # use only if mob has mana
+  magic_resistance:
+
+# if mob has attributes, uncomment and fill out the tag below
+#attributes:
+#  str: # Strength
+#  agi: # Agility
+#  dex: # Dexterity
+#  con: # Constitution
+#  per: # Perception
+#  int: # Intellect
+#  wis: # Wisdom
+
+# if mob has skills, uncomment the tag below and add skill names
+#skills:
+#  - Sample Skill 1 # names must match name of skill (case insensitive)
